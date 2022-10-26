@@ -3,6 +3,7 @@ import time
 import sys
 import random
 
+
 def homePage():
     print("\nHello and Welcome to BTech!\n\n--------------------------------------------\n\nWould you like to Login or SignUp?")
     print("[1] Login")
@@ -32,7 +33,6 @@ def homePage():
                 break
             if option == "0":
                 print("Thank you for using BTech. Goodbye!")
-                option = 100
                 break
 
 def signUp():
@@ -56,14 +56,35 @@ def signUp():
                     }
                     with open("userInfo.json", "w") as outfile:
                         json.dump(userInfo, outfile, indent=4)
-                else:
+                elif number not in password:
                     while any(number in password for number in numbers) is False:
                         print("You must have at least one special character and number in your password. Please try again...")
                         password = input("Password: ")
-        else:
+                userInfo = { 
+                        "users": [
+                            {
+                                "username" : username,
+                                "password" : password
+                            }
+                        ]
+                    }    
+                with open("userInfo.json", "w") as outfile:
+                    json.dump(userInfo, outfile, indent=4)    
+        elif specialChar not in password:
             while any(specialChar in password for specialChar in passwordChars) is False:
                 print("You must have at least one special character and number in your password. Please try again...")
                 password = input("Password: ")
+            userInfo = { 
+                        "users": [
+                            {
+                                "username" : username,
+                                "password" : password
+                            }
+                        ]
+                    }
+            with open("userInfo.json", "w") as outfile:
+                json.dump(userInfo, outfile, indent=4)    
+            
     print("Account successfully created! Exiting program . . . ")
     homePage()
 
