@@ -9,30 +9,30 @@ def homePage():
     print("[2] SignUp")
     print("[0] Exit The Program")
     option = input("Please enter your choice: ")
-    if option == "helno":
+    if option == "1":
         login()
-    if option == "bye":
+    if option == "2":
         signUp()
     if option == "0":
         print("Thank you for using BTech. Goodbye!")
-    if option != "helno" or option != "bye" or option != "0":
-        while option != "helno" or option != "bye" or option != "0":
+    if option != "1" or option != "2" or option != "0":
+        while option != "1" or option != "2" or option != "0":
             print("Invalid option please try again")
             print("[1] Login")
             print("[2] SignUp")
             print("[0] Exit The Program")
             option = input("Please enter your choice: ")
-            if option == "helno":
+            if option == "1":
                 login()
-                option = 1
+                option = 100
                 break
-            if option == "bye":
+            if option == "2":
                 signUp()
-                option = 1
+                option = 100
                 break
             if option == "0":
                 print("Thank you for using BTech. Goodbye!")
-                option = 1
+                option = 100
                 break
 
 def signUp():
@@ -91,26 +91,8 @@ def accountHomePage():
     print("[0] Return to Homepage")
     option = input("Please enter your choice: ")
     if option == "0":
-        for i in range(6):
-            sys.stdout.write('\rLoading |')
-            time.sleep(0.1)
-            sys.stdout.write('\rLoading /')
-            time.sleep(0.1)
-            sys.stdout.write('\rLoading -')
-            time.sleep(0.1)
-            sys.stdout.write('\rLoading \\')
-            time.sleep(0.2)
-            sys.stdout.write('\rLoading |')
-            time.sleep(0.2)
-            sys.stdout.write('\rLoading /')
-            if i == 6:
-                time.sleep(1)
-                sys.stdout.write('\r')
-                homePage()
-            else:
-                time.sleep(0.1)
-                sys.stdout.write('\r')
-    else:
+        homePage()
+    if option != "0":
         while option != "0":
             print("Invalid option please try again")
             option = input("Please enter your choice: ")
