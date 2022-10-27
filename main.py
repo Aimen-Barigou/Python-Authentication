@@ -33,7 +33,7 @@ def homePage():
                 break
             if option == "0":
                 print("Thank you for using BTech. Goodbye!")
-                break
+                return
 
 def signUp():
     passwordChars = list(" !\"#$%&'()*+,-./:;<=>?@[\]^_`{|}~")
@@ -89,21 +89,17 @@ def signUp():
     homePage()
 
 def login():
-    with open('userInfo.json') as openfile:
+    with open("userInfo.json") as openfile:
         data = json.load(openfile)
-    usernameLoginInput = input("Username: ")
-    passwordLoginInput = input("Password: ")
-    for user in data['users']:
-        while user['username'] != usernameLoginInput:
-            print("user not found")
-            usernameLoginInput = input("Username: ")
-            passwordLoginInput = input("Password: ")
-        while user['password'] != passwordLoginInput:
-            print("password incorrect")
-            usernameLoginInput = input("Username: ")
-            passwordLoginInput = input("Password: ")
-    print("Logged in")
-    accountHomePage()
+    while True:
+        usernameLoginInput = input("Username: ")
+        passwordLoginInput = input("Password: ")
+        for entry in data["users"]:
+            if entry["username"] == usernameLoginInput and entry["password"] == passwordLoginInput:
+                print("Logged in")
+                accountHomePage()
+                return
+        print("Ether username or password incorrect\n\nPlease try again\n")
 
 def accountHomePage():
     with open('userInfo.json') as openfile:

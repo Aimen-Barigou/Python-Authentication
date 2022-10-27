@@ -1,8 +1,12 @@
 {
     "users": [
         {
-            "username": "aimen",
-            "password": "test1!"
+            "username" : "aimen",
+            "password" : "test1!"
+        },
+        {
+            "username" : "bigboy",
+            "password" : "spam1"
         }
     ]
 }
