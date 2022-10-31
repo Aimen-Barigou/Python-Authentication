@@ -3,7 +3,6 @@ import time
 import sys
 import random
 
-
 def homePage():
     print("\nHello and Welcome to BTech!\n\n--------------------------------------------\n\nWould you like to Login or SignUp?")
     print("[1] Login")
@@ -11,7 +10,7 @@ def homePage():
     print("[0] Exit The Program")
     option = input("Please enter your choice: ")
     if option == "1":
-        login()
+        accountHomePage()
     if option == "2":
         signUp()
     if option == "0":
@@ -24,7 +23,7 @@ def homePage():
             print("[0] Exit The Program")
             option = input("Please enter your choice: ")
             if option == "1":
-                login()
+                accountHomePage()
                 option = 100
                 break
             if option == "2":
@@ -94,17 +93,17 @@ def login():
     while True:
         usernameLoginInput = input("Username: ")
         passwordLoginInput = input("Password: ")
-        for entry in data["users"]:
-            if entry["username"] == usernameLoginInput and entry["password"] == passwordLoginInput:
+        for user in data["users"]:
+            if user["username"] == usernameLoginInput and user["password"] == passwordLoginInput:
                 print("Logged in")
-                accountHomePage()
-                return
+                username = user['username']
+                return username
         print("Ether username or password incorrect\n\nPlease try again\n")
 
 def accountHomePage():
     with open('userInfo.json') as openfile:
-        data = json.loads(openfile.read())
-    print(f"\nHello {data['users'][0]['username']}! Welcome to your BTech account!\n What would you like to do first?\n")
+        data = json.load(openfile)
+    print(f"\nHello {login()}! Welcome to your BTech account!\n What would you like to do first?\n")
     print("[0] Return to Homepage")
     option = input("Please enter your choice: ")
     if option == "0":
